@@ -69,6 +69,8 @@ class ViewController: UIViewController {
         for button in lettersBtn{
             button.isEnabled = enable
         }
+        if !enable { correctWordLabel.text = "The game is end"}
+
     }
     
     func updateGameState(){
