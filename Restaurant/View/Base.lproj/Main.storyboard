@@ -82,7 +82,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="pmM-0N-uuk" kind="show" id="tW1-7e-p7q"/>
+                                    <segue destination="pmM-0N-uuk" kind="show" identifier="showDetailsItem" id="tW1-7e-p7q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -97,21 +97,83 @@
             </objects>
             <point key="canvasLocation" x="1369" y="-97"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu Item Detail View Controller-->
         <scene sceneID="afg-HE-thd">
             <objects>
-                <viewController id="pmM-0N-uuk" sceneMemberID="viewController">
+                <viewController id="pmM-0N-uuk" customClass="MenuItemDetailViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V7E-kY-1AD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="nyo-aj-aCW">
+                                <rect key="frame" x="15" y="170" width="363" height="255.33333333333337"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Ee-se-MJe">
+                                        <rect key="frame" x="0.0" y="0.0" width="363" height="213"/>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vwC-1a-ROZ">
+                                        <rect key="frame" x="0.0" y="215" width="363" height="20.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ItemName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd0-MQ-ynJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="308.33333333333331" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Price" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNp-Dt-Opo">
+                                                <rect key="frame" x="308.33333333333331" y="0.0" width="54.666666666666686" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wL7-qg-pJa">
+                                        <rect key="frame" x="0.0" y="237.33333333333331" width="363" height="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-TD-G2X">
+                                <rect key="frame" x="15" y="710" width="363" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="50d-ap-2Jn"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add To Order"/>
+                                <connections>
+                                    <action selector="orderButtonTapped:" destination="pmM-0N-uuk" eventType="touchUpInside" id="Tpi-Ch-62X"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="v0Y-BT-ejy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="v0Y-BT-ejy" firstAttribute="trailing" secondItem="EAI-TD-G2X" secondAttribute="trailing" constant="15" id="16w-X2-h8L"/>
+                            <constraint firstItem="4Ee-se-MJe" firstAttribute="height" secondItem="V7E-kY-1AD" secondAttribute="height" multiplier="1:4" id="4X8-td-xaX"/>
+                            <constraint firstItem="v0Y-BT-ejy" firstAttribute="bottom" secondItem="EAI-TD-G2X" secondAttribute="bottom" constant="15" id="Gdj-hg-ATk"/>
+                            <constraint firstItem="nyo-aj-aCW" firstAttribute="top" secondItem="v0Y-BT-ejy" secondAttribute="top" constant="15" id="QoB-ux-x9S"/>
+                            <constraint firstItem="nyo-aj-aCW" firstAttribute="leading" secondItem="v0Y-BT-ejy" secondAttribute="leading" constant="15" id="TvW-CA-smM"/>
+                            <constraint firstItem="EAI-TD-G2X" firstAttribute="leading" secondItem="v0Y-BT-ejy" secondAttribute="leading" constant="15" id="csU-L2-j7T"/>
+                            <constraint firstItem="v0Y-BT-ejy" firstAttribute="trailing" secondItem="nyo-aj-aCW" secondAttribute="trailing" constant="15" id="iOc-gJ-UV2"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="va0-PC-cjc"/>
+                    <connections>
+                        <outlet property="addToOrderBtn" destination="EAI-TD-G2X" id="6bS-f1-eJ1"/>
+                        <outlet property="detailTextLabel" destination="wL7-qg-pJa" id="MRX-4L-psT"/>
+                        <outlet property="imageView" destination="4Ee-se-MJe" id="Zq0-42-54c"/>
+                        <outlet property="nameLabel" destination="Sd0-MQ-ynJ" id="U2k-m2-fUG"/>
+                        <outlet property="priceLabel" destination="VNp-Dt-Opo" id="Enb-or-vv1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qtY-rs-9cx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2152" y="-97"/>
+            <point key="canvasLocation" x="2150.3816793893129" y="-97.183098591549296"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="GSK-Ip-aQP">

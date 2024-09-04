@@ -8,6 +8,9 @@
 import Foundation
 
 class MenuController{
+
+    static let shared = MenuController()
+
     typealias MinutsToPrepare = Int
     
     enum MenuControllerError: Error, LocalizedError{

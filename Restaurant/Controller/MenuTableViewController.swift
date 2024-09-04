@@ -11,7 +11,6 @@ import UIKit
 class MenuTableViewController: UITableViewController {
 
     var category: String = ""
-    let menuController = MenuController()
     var menuItems = [MenuItem]()
     
     
@@ -23,7 +22,7 @@ class MenuTableViewController: UITableViewController {
         // Use URLSession to retrieve data
         Task.init{
             do{
-                let menuItems = try await menuController.fetchMenuItems(forCategory: category)
+                let menuItems = try await MenuController.shared.fetchMenuItems(forCategory: category)
                     updateUI(with: menuItems)
             }catch{
                 displayError(error, title: "Failed to Fetch Menu Items for \(self.category)")
@@ -51,6 +50,17 @@ class MenuTableViewController: UITableViewController {
         self.present(alert ,animated: true)
     }
    
+    
+    // Segue to show Details menu items
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailsItem",
+            let detailsVc = segue.destination as? MenuItemDetailViewController ,
+               let indexPath = tableView.indexPathForSelectedRow{
+                detailsVc.menuItem = menuItems[indexPath.row]
+            }
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
