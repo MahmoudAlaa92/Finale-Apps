@@ -44,19 +44,17 @@ class CategoryTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    
-    @IBSegueAction func showMenu(_ coder: NSCoder, sender: Any?) -> MenuTableViewController? {
-        
-        guard let cell = sender as? UITableViewCell,
-              let indexPath = tableView.indexPath(for: cell) else{
-            return nil
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMenu",
+           let menuVC = segue.destination as? MenuTableViewController,
+           let indexPath = tableView.indexPathForSelectedRow {
+           let category = categories[indexPath.row]
+            menuVC.category = category
         }
-        
-        let category = categories[indexPath.row]
-        
-        return MenuTableViewController(coder: coder, category: category)
     }
     
+
 
     // MARK: - Table view data source
 

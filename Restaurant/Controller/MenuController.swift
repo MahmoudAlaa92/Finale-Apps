@@ -16,23 +16,15 @@ class MenuController{
         case orderRequestFieled
     }
     
-    
-    
     let baseUrl = URL(string: "http://localhost:8080/")
-    
-    func fetchMenuItems(forCategory categoryName: String) async throws -> [MenuItem]{
-        //        if let baseMenuURL = baseUrl?.appendingPathComponent("menu"){
-        //            var components = URLComponents(url: baseMenuURL, resolvingAgainstBaseURL: true)
-        //            components?.queryItems = [URLQueryItem(name: "category", value: categoryName)]
-        //
-        //            let menuURL = components?.url
-        //        }
         
-        if let initialMenuURL = baseUrl?.appendingPathComponent("menu"){
-            var components = URLComponents(url: initialMenuURL, resolvingAgainstBaseURL: true)
+    func fetchMenuItems(forCategory categoryName: String) async throws -> [MenuItem]{
+        
+        let initialMenuURL = baseUrl?.appendingPathComponent("menu")
+        
+            var components = URLComponents(url: initialMenuURL!, resolvingAgainstBaseURL: true)
             components?.queryItems = [URLQueryItem(name: "category", value: categoryName)]
 
-            /// wrap
             let menuURL = components?.url
             let (data ,response) = try await URLSession.shared.data(from: menuURL!)
             
@@ -40,16 +32,21 @@ class MenuController{
                   httpResponse.statusCode == 200 else{
                 throw MenuControllerError.menuItemNotFound
             }
-            
+        /// Check the data is recieved successfully
+//        let jsonObject = try JSONSerialization.jsonObject(with: data,options: [])
+//        let dataa = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+//        if let strEncoding = String(data: dataa, encoding: .utf8){
+//            print(strEncoding)
+//        }
+        
+        do{
             let decoder = JSONDecoder()
             let menuResponse = try decoder.decode(MenuResponse.self, from: data)
             
             return menuResponse.items
-            
-        }else{
-            fatalError("Error in fetch menu items")
+        }catch{
+            fatalError("Error when decoded data in fetchMenuItems function")
         }
-        
     }
     
     func submitOrder(forMenuIDs menuIDs: [Int]) async throws -> MinutsToPrepare{
