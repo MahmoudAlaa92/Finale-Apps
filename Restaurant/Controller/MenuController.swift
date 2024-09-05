@@ -10,7 +10,14 @@ import Foundation
 class MenuController{
 
     static let shared = MenuController()
-
+    
+    var order = Order(menuItems: []){
+        didSet{
+            NotificationCenter.default.post(name: MenuController.orderUpdatedNotification, object: nil)
+        }
+    }
+    static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
+    
     typealias MinutsToPrepare = Int
     
     enum MenuControllerError: Error, LocalizedError{
@@ -21,6 +28,7 @@ class MenuController{
     
     let baseUrl = URL(string: "http://localhost:8080/")
         
+    // Fetch menu items
     func fetchMenuItems(forCategory categoryName: String) async throws -> [MenuItem]{
         
         let initialMenuURL = baseUrl?.appendingPathComponent("menu")
@@ -52,6 +60,7 @@ class MenuController{
         }
     }
     
+    // Submit Order
     func submitOrder(forMenuIDs menuIDs: [Int]) async throws -> MinutsToPrepare{
         
         let orederURL = baseUrl?.appendingPathComponent("order")
@@ -80,6 +89,7 @@ class MenuController{
         
     }
     
+    // Fetch category
     func fetchingCategories() async throws -> [String]{
         do{
             let categoriesURL = baseUrl?.appendingPathComponent("categories")

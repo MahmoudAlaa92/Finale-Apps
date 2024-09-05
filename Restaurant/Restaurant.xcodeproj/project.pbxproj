@@ -19,6 +19,7 @@
 		157CEFC72C8219BE007F764F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 157CEFC62C8219BE007F764F /* Base */; };
 		157CEFC92C8219BF007F764F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 157CEFC82C8219BF007F764F /* Assets.xcassets */; };
 		157CEFCC2C8219BF007F764F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 157CEFCB2C8219BF007F764F /* Base */; };
+		15D23E0C2C88E56700B4176D /* OrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D23E0B2C88E56700B4176D /* OrderTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		157CEFC82C8219BF007F764F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		157CEFCB2C8219BF007F764F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		157CEFCD2C8219BF007F764F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15D23E0B2C88E56700B4176D /* OrderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderTableViewController.swift; path = Controller/OrderTableViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				1553F5CC2C84AD8600595D90 /* MenuItemDetailViewController.swift */,
 				1553F5CA2C84AB8E00595D90 /* MenuTableViewController.swift */,
 				1553F5D72C84BDC800595D90 /* MenuController.swift */,
+				15D23E0B2C88E56700B4176D /* OrderTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				1553F5D62C84BCD100595D90 /* Order.swift in Sources */,
 				157CEFC02C8219BE007F764F /* AppDelegate.swift in Sources */,
 				1553F5D22C84B89300595D90 /* MenuItem.swift in Sources */,
+				15D23E0C2C88E56700B4176D /* OrderTableViewController.swift in Sources */,
 				157CEFC22C8219BE007F764F /* SceneDelegate.swift in Sources */,
 				1553F5C92C84AB6F00595D90 /* CategoryTableViewController.swift in Sources */,
 				1553F5D42C84BAB400595D90 /* ResponseModels.swift in Sources */,
