@@ -15,8 +15,7 @@ class MenuItemDetailViewController: UIViewController {
     @IBOutlet weak var addToOrderBtn: UIButton!
     @IBOutlet weak var detailTextLabel: UILabel!
     
-    var menuItem: MenuItem = MenuItem(id: 0, name: "", detailText: "", price: 0.0, category: "", imageURL: URL(string: "http://localhost:8080/")!)
-    
+    var menuItem: MenuItem = MenuItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()

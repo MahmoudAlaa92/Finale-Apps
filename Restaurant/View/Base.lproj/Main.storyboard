@@ -175,6 +175,52 @@
             </objects>
             <point key="canvasLocation" x="2150.3816793893129" y="-97.183098591549296"/>
         </scene>
+        <!--Order Confirmation View Controller-->
+        <scene sceneID="XGa-tg-ddU">
+            <objects>
+                <viewController id="UUD-Ab-Yqi" customClass="OrderConfirmationViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qX7-Fs-h1g">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="P8o-dw-Hci">
+                                <rect key="frame" x="0.0" y="391.66666666666669" width="393" height="68.666666666666686"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6K-yL-xA5">
+                                        <rect key="frame" x="176" y="0.0" width="41.333333333333343" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axw-7s-SV6">
+                                        <rect key="frame" x="155" y="30.333333333333318" width="83.333333333333314" height="38.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Dismiss"/>
+                                        <connections>
+                                            <segue destination="9WV-Dv-Bay" kind="unwind" identifier="dismissConfirmation" unwindAction="unwindToOrderListWithSegue:" id="iAd-p5-LvP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qW2-Ta-P9U"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="P8o-dw-Hci" firstAttribute="centerY" secondItem="qX7-Fs-h1g" secondAttribute="centerY" id="HZO-Zu-e3r"/>
+                            <constraint firstItem="qW2-Ta-P9U" firstAttribute="trailing" secondItem="P8o-dw-Hci" secondAttribute="trailing" id="L3U-lF-SDd"/>
+                            <constraint firstItem="P8o-dw-Hci" firstAttribute="leading" secondItem="qW2-Ta-P9U" secondAttribute="leading" id="a4B-Lb-6Tu"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="keU-9N-ox7"/>
+                    <connections>
+                        <outlet property="confirmationLabel" destination="h6K-yL-xA5" id="UEt-g1-VD4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRk-Kk-zSw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="9WV-Dv-Bay" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1369" y="585"/>
+        </scene>
         <!--Root View Controller-->
         <scene sceneID="GSK-Ip-aQP">
             <objects>
@@ -207,6 +253,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="UUD-Ab-Yqi" kind="show" identifier="confirmOrder" id="n26-lH-HIZ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -214,7 +263,13 @@
                             <outlet property="delegate" destination="XHi-bB-ovR" id="HoT-uw-ZW3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="gaA-9S-lhV"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="gaA-9S-lhV">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="ehP-DI-iuy">
+                            <connections>
+                                <action selector="submitTapped:" destination="XHi-bB-ovR" id="bxM-5Y-ctJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAh-Ac-V4I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

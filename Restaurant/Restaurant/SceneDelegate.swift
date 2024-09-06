@@ -12,22 +12,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var orderTabBarItem: UITabBarItem!
         
     @objc func updataOrderBadge(){
-        switch MenuController.shared.order.menuItems.count {
-        case 0:
-            orderTabBarItem.badgeValue = nil
-        case let count:
-            orderTabBarItem.badgeValue = String(count)
-        }
+        let count = MenuController.shared.order.menuItems.count
+        orderTabBarItem.badgeValue = count > 0 ? String(count) : nil
     }
 
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-       
-        NotificationCenter.default.addObserver(self, selector: #selector(updataOrderBadge), name: MenuController.orderUpdatedNotification, object: nil)
-        orderTabBarItem = (window?.rootViewController as? UITabBarController)?.viewControllers?[1].tabBarItem
         
         guard let _ = (scene as? UIWindowScene) else { return }
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(updataOrderBadge), name: MenuController.orderUpdatedNotification, object: nil)
+        
+        orderTabBarItem = (window?.rootViewController as? UITabBarController)?.viewControllers?[1].tabBarItem
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
