@@ -12,13 +12,15 @@ class MenuTableViewController: UITableViewController {
 
     var category: String = ""
     var menuItems = [MenuItem]()
-    
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = category.capitalized
         
-        
+        imageLoadTasks.forEach { key, value in
+            value.cancel()
+        }
         // Use URLSession to retrieve data
         Task.init{
             do{
@@ -82,13 +84,29 @@ class MenuTableViewController: UITableViewController {
 
     // Configer Cell
     func configure(_ cell:UITableViewCell, forItemAt indexPath: IndexPath){
+        
+        guard let cell = cell as? MenuItemCell else{ return }
+        
         let menuItem = menuItems[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = menuItem.name
-        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-        cell.contentConfiguration = content
+        
+        cell.itemName = menuItem.name
+        cell.price = menuItem.price
+        
+        imageLoadTasks [indexPath] = Task.init{
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL!){
+                
+                if let currentIndexPath = self.tableView.indexPath(for: cell),
+                   currentIndexPath == indexPath{
+                    cell.image = image
+                }
+            }
+        }
+        imageLoadTasks[indexPath] = nil
     }
     
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        imageLoadTasks[indexPath]?.cancel()
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

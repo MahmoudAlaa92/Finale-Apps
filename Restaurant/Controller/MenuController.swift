@@ -5,7 +5,7 @@
 //  Created by Mahmoud Alaa on 01/09/2024.
 //
 
-import Foundation
+import UIKit
 
 class MenuController{
 
@@ -24,10 +24,27 @@ class MenuController{
         case categriesNotFound
         case menuItemNotFound
         case orderRequestFieled
+        case imageDataMissing
     }
     
     let baseUrl = URL(string: "http://localhost:8080/")
+    
+    // Fetch image
+    func fetchImage(from url: URL) async throws -> UIImage{
+        let (data, resoponse) = try await URLSession.shared.data(from: url)
         
+        guard let httpResponse = resoponse as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else{
+            throw MenuControllerError.imageDataMissing
+        }
+        
+        guard let image = UIImage(data: data) else{
+            throw MenuControllerError.imageDataMissing
+        }
+        
+        return image
+    }
+    
     // Fetch menu items
     func fetchMenuItems(forCategory categoryName: String) async throws -> [MenuItem]{
         

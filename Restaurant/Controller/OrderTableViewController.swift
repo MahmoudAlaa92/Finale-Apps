@@ -103,14 +103,17 @@ class OrderTableViewController: UITableViewController {
         return cell
     }
     
-    // Configure
+    // Configure cell
     func configure(_ cell:UITableViewCell, forItemAt indexPath: IndexPath){
-        let menuItem = MenuController.shared.order.menuItems[indexPath.row]
         
-        var content = cell.defaultContentConfiguration()
-        content.text = menuItem.name
-        content.secondaryText = menuItem.price.formatted(.currency(code: "usd"))
-        cell.contentConfiguration = content
+        guard let cell = cell as? MenuItemCell else { return }
+        
+        let menuItem = MenuController.shared.order.menuItems[indexPath.row]
+     
+        cell.itemName = menuItem.name
+        cell.price = menuItem.price
+        cell.image = nil
+        
     }
 
     // Can edit row at

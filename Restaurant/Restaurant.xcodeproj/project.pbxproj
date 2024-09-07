@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		153AFA8F2C8AF13F003D2598 /* OrderConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153AFA8E2C8AF13F003D2598 /* OrderConfirmationViewController.swift */; };
+		153AFA912C8B7237003D2598 /* MenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153AFA902C8B7237003D2598 /* MenuItemCell.swift */; };
 		1553F5C92C84AB6F00595D90 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553F5C82C84AB6F00595D90 /* CategoryTableViewController.swift */; };
 		1553F5CB2C84AB8E00595D90 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553F5CA2C84AB8E00595D90 /* MenuTableViewController.swift */; };
 		1553F5CD2C84AD8600595D90 /* MenuItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1553F5CC2C84AD8600595D90 /* MenuItemDetailViewController.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		153AFA8E2C8AF13F003D2598 /* OrderConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmationViewController.swift; sourceTree = "<group>"; };
+		153AFA902C8B7237003D2598 /* MenuItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemCell.swift; sourceTree = "<group>"; };
 		1553F5C82C84AB6F00595D90 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		1553F5CA2C84AB8E00595D90 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		1553F5CC2C84AD8600595D90 /* MenuItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemDetailViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		157CEFB32C8219BE007F764F = {
 			isa = PBXGroup;
 			children = (
+				153AFA902C8B7237003D2598 /* MenuItemCell.swift */,
 				1553F5CE2C84AD9A00595D90 /* Model */,
 				1553F5CF2C84ADB700595D90 /* View */,
 				1553F5D02C84ADBC00595D90 /* Controller */,
@@ -195,6 +198,7 @@
 				15D23E0C2C88E56700B4176D /* OrderTableViewController.swift in Sources */,
 				157CEFC22C8219BE007F764F /* SceneDelegate.swift in Sources */,
 				1553F5C92C84AB6F00595D90 /* CategoryTableViewController.swift in Sources */,
+				153AFA912C8B7237003D2598 /* MenuItemCell.swift in Sources */,
 				153AFA8F2C8AF13F003D2598 /* OrderConfirmationViewController.swift in Sources */,
 				1553F5D42C84BAB400595D90 /* ResponseModels.swift in Sources */,
 			);
