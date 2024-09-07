@@ -10,9 +10,14 @@ import UIKit
 class OrderTableViewController: UITableViewController {
     
     var minutsToPrepareOrder = 0
-    
+    var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imageLoadTasks.forEach { key, value in
+            value.cancel()
+        }
         
         navigationItem.leftBarButtonItem = editButtonItem
         
@@ -112,8 +117,17 @@ class OrderTableViewController: UITableViewController {
      
         cell.itemName = menuItem.name
         cell.price = menuItem.price
-        cell.image = nil
         
+        imageLoadTasks [indexPath] = Task.init{
+            if let image = try? await MenuController.shared.fetchImage(from: menuItem.imageURL!){
+                
+                if let currentIndexPath = self.tableView.indexPath(for: cell),
+                   currentIndexPath == indexPath{
+                    cell.image = image
+                }
+            }
+        }
+        imageLoadTasks[indexPath] = nil
     }
 
     // Can edit row at
