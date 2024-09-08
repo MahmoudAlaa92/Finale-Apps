@@ -14,12 +14,16 @@ class MenuController{
     var order = Order(menuItems: []){
         didSet{
             NotificationCenter.default.post(name: MenuController.orderUpdatedNotification, object: nil)
+            userActivity.order = order
         }
     }
+    
+    var userActivity = NSUserActivity(activityType: "com.MahmoudAlaa.OrderApp.order")
+    
+    // Notification Center
     static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
     
-    typealias MinutsToPrepare = Int
-    
+    // Enum Error
     enum MenuControllerError: Error, LocalizedError{
         case categriesNotFound
         case menuItemNotFound
@@ -78,6 +82,7 @@ class MenuController{
     }
     
     // Submit Order
+    typealias MinutsToPrepare = Int
     func submitOrder(forMenuIDs menuIDs: [Int]) async throws -> MinutsToPrepare{
         
         let orederURL = baseUrl?.appendingPathComponent("order")
@@ -125,6 +130,4 @@ class MenuController{
             fatalError("Error in fetching Categories")
         }
     }
-    
-    
 }
