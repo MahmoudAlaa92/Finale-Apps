@@ -22,10 +22,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let _ = (scene as? UIWindowScene) else { return }
        
+        // Handle badge icon of order tab bar
         NotificationCenter.default.addObserver(self, selector: #selector(updataOrderBadge), name: MenuController.orderUpdatedNotification, object: nil)
         
         orderTabBarItem = (window?.rootViewController as? UITabBarController)?.viewControllers?[1].tabBarItem
         
+    }
+    
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        //print("stateRestorationActivity")
+        return MenuController.shared.userActivity
+    }
+    
+    func scene(_ scene: UIScene, restoreInteractionStateWith stateRestorationActivity: NSUserActivity) {
+       // print("restoreInteractionStateWith")
+        if let restoreOrder = stateRestorationActivity.order{
+            MenuController.shared.order = restoreOrder
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

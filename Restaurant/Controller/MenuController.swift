@@ -10,6 +10,7 @@ import UIKit
 class MenuController{
 
     static let shared = MenuController()
+    var userActivity = NSUserActivity(activityType: "com.MahmoudAlaa.OrderApp.order")
     
     var order = Order(menuItems: []){
         didSet{
@@ -17,8 +18,6 @@ class MenuController{
             userActivity.order = order
         }
     }
-    
-    var userActivity = NSUserActivity(activityType: "com.MahmoudAlaa.OrderApp.order")
     
     // Notification Center
     static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
