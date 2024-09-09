@@ -17,5 +17,5 @@ Server Interaction: The app communicates with a server (run locally) to fetch an
   
 This project demonstrates how to integrate web services into an iOS app, handle dynamic data, and provide a smooth user experience for viewing and submitting orders.
 
-## video link of app
+## Video link to the application
 https://drive.google.com/file/d/1Ss7tT1aml8z0_Os7Ewezkk4dd51p4hPA/view?usp=sharing
