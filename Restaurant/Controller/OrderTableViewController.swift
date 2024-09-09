@@ -106,10 +106,16 @@ class OrderTableViewController: UITableViewController {
 
     // Cell for row at
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Order", for: indexPath)
         	configure(cell, forItemAt: indexPath)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
     
     // Configure cell
