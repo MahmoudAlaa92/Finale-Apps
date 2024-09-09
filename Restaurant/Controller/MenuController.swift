@@ -19,6 +19,21 @@ class MenuController{
         }
     }
     
+    // Update user activity
+    func updataUserActivity(with controller: StateRestorationController){
+        
+        switch controller{
+        case .menu(category: let category):
+            userActivity.menuCategory = category
+        case .menuItemDetail(let menuItem):
+            userActivity.menuItem = menuItem
+        case .order, .categories:
+            break
+        }
+        
+        userActivity.controllerIdentifier = controller.identifier
+    }
+    
     // Notification Center
     static let orderUpdatedNotification = Notification.Name("MenuController.orderUpdated")
     

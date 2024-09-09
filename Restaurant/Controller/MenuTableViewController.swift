@@ -16,11 +16,13 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         title = category.capitalized
         
         imageLoadTasks.forEach { key, value in
             value.cancel()
         }
+        
         // Use URLSession to retrieve data
         Task.init{
             do{
@@ -30,7 +32,10 @@ class MenuTableViewController: UITableViewController {
                 displayError(error, title: "Failed to Fetch Menu Items for \(self.category)")
             }
         }
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        MenuController.shared.updataUserActivity(with: .menu(category: category))
     }
     
     // Update UI

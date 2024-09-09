@@ -24,6 +24,10 @@ class OrderTableViewController: UITableViewController {
         NotificationCenter.default.addObserver(tableView!, selector: #selector(UITableView.reloadData), name: MenuController.orderUpdatedNotification, object: nil)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        MenuController.shared.updataUserActivity(with: .order)
+    }
+    
     // Submit button
     @IBAction func submitTapped(_ sender: Any) {
     let orderTotal = MenuController.shared.order.menuItems.reduce(0.0){

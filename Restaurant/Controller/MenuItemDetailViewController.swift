@@ -23,6 +23,10 @@ class MenuItemDetailViewController: UIViewController {
         updataUI()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        MenuController.shared.updataUserActivity(with: .menuItemDetail(menuItem))
+    }
+    
     // Updata UI
     func updataUI(){
         nameLabel.text = menuItem.name

@@ -30,14 +30,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        //print("stateRestorationActivity")
+//        print("stateRestorationActivity")
+        
         return MenuController.shared.userActivity
     }
     
     func scene(_ scene: UIScene, restoreInteractionStateWith stateRestorationActivity: NSUserActivity) {
-       // print("restoreInteractionStateWith")
+//        print("restoreInteractionStateWith")
+        
         if let restoreOrder = stateRestorationActivity.order{
             MenuController.shared.order = restoreOrder
+        }
+        
+        guard let restorationController = StateRestorationController(userActivity: stateRestorationActivity),
+              let tabBarController = window?.rootViewController as? UITabBarController,
+              tabBarController.viewControllers?.count == 2,
+              let categoryTableViewController =
+                (tabBarController.viewControllers?[0] as? UINavigationController)?.topViewController as? CategoryTableViewController
+        else{
+            return
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        switch restorationController{
+        case .categories:
+            break
+            
+        case .order:
+            tabBarController.selectedIndex = 1
+            
+        case .menu(category: let category):
+            let menuTableVC = storyboard.instantiateViewController(withIdentifier: "menu") as! MenuTableViewController
+                menuTableVC.category = category
+                categoryTableViewController.navigationController?.pushViewController(menuTableVC, animated: true)
+            
+        case .menuItemDetail(let menuItem):
+            let menuTableVC = storyboard.instantiateViewController(withIdentifier: "menu") as! MenuTableViewController
+                menuTableVC.category = menuItem.category
+            
+            let menuItemDetailVC = storyboard.instantiateViewController(withIdentifier: "menuItemsDetail") as! MenuItemDetailViewController
+                   menuItemDetailVC.menuItem = menuItem
+            
+            categoryTableViewController.navigationController?.pushViewController(menuTableVC, animated: false)
+            categoryTableViewController.navigationController?.pushViewController(menuItemDetailVC, animated: false)
         }
     }
 

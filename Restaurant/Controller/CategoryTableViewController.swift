@@ -25,6 +25,10 @@ class CategoryTableViewController: UITableViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        MenuController.shared.updataUserActivity(with: .categories)
+    }
+    
     // Update UI
     func updateUI(with categories: [String]){
         self.categories = categories
@@ -43,7 +47,7 @@ class CategoryTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-
+   // Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMenu",
            let menuVC = segue.destination as? MenuTableViewController,
